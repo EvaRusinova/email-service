@@ -28,6 +28,11 @@ dependencies {
     implementation 'jakarta.validation:jakarta.validation-api'
     // Hibernate Validator as the implementation of Jakarta Bean Validation
     implementation 'org.hibernate.validator:hibernate-validator'
+
+    //Mail needed
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework:spring-context-support'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
