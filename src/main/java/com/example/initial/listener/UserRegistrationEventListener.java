@@ -20,7 +20,6 @@ public class UserRegistrationEventListener {
                 .email(event.getEmail())
                 .build();
         userRepository.save(user);
-
         // Handle the user registration event
     }
 }

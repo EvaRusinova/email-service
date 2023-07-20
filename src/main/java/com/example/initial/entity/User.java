@@ -21,7 +21,7 @@ public class User {
 
     @Size(min = 2, max = 50)
     @NotBlank
-    @Column(name = "user-name", unique = true)
+    @Column(name = "user_name", unique = true)
     private String userName;
 
     @Email(message = "Invalid email format")
