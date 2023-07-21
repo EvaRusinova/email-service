@@ -9,7 +9,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,10 +20,15 @@ public class User {
 
     @Size(min = 2, max = 50)
     @NotBlank
-    @Column(name = "user_name", unique = true)
+    @Column(name = "user_name")
     private String userName;
 
     @Email(message = "Invalid email format")
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
+
+    //The default subject will be "UserA support" unless subject is explicitly set
+//    @Builder.Default
+    @Column(name = "subject")
+    private String subject = "UserA support";
 }
