@@ -52,7 +52,7 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     // h2 database
-    implementation 'com.h2database:h2:2.1.214'
+    implementation 'com.h2database:h2:2.2.220'
 }
 
 tasks.named('test') {
