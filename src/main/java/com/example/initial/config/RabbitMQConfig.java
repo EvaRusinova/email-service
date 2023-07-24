@@ -14,8 +14,18 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Queue varifiedEmailQueue() {
+        return new Queue("email-verification-queue");
+    }
+
+    @Bean
     public Exchange userRegistrationExchange() {
         return new DirectExchange("user-registration-exchange");
+    }
+
+    @Bean
+    public Exchange emailVerificationExchange() {
+        return new DirectExchange("email-verification-exchange");
     }
 
     @Bean
@@ -24,6 +34,15 @@ public class RabbitMQConfig {
                 .bind(userRegistrationQueue)
                 .to(userRegistrationExchange)
                 .with("user-registration-key")
+                .noargs();
+    }
+
+    @Bean
+    public Binding emailVerificationBinding(Queue varifiedEmailQueue, Exchange emailVerificationExchange) {
+        return BindingBuilder
+                .bind(varifiedEmailQueue)
+                .to(emailVerificationExchange)
+                .with("email-verification-key")
                 .noargs();
     }
 }
