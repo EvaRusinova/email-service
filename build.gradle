@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:2.2.0'
     implementation 'com.google.apis:google-api-services-gmail:v1-rev83-1.23.0'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.43.3'
 
     // Thymeleaf dependency replace variables
     implementation 'org.thymeleaf:thymeleaf:3.0.12.RELEASE'
