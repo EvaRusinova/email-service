@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
+    // TODO: we need to talk about that class: "Important Eva" thread
     @Bean
     public Queue userRegistrationQueue() {
         return new Queue("user-registration-queue");
