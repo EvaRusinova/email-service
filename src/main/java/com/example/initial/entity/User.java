@@ -11,6 +11,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,8 +28,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    //The default subject will be "UserA support" unless subject is explicitly set
-//    @Builder.Default
+    @Builder.Default
     @Column(name = "subject")
     private String subject = "UserA support";
 }

@@ -21,11 +21,10 @@ public class UserRegistrationEventListener {
 
     @RabbitListener(queues = "user-registration-queue")
     public void onUserRegistrationEvent(UserRegistrationEvent event) throws MessagingException, GeneralSecurityException, IOException {
-//        User user = User.builder()
-//                .userName(event.getUserName())
-//                .email(event.getEmail())
-//                .build();
-        User user = null;
+        User user = User.builder()
+                .userName(event.getUserName())
+                .email(event.getEmail())
+                .build();
         userRepository.save(user);
         gmailService.sendEmail(user);
     }
