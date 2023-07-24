@@ -19,4 +19,13 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    public User findByToken(String token) {
+        return userRepository.findByToken(token);
+    }
+
+    @Override
+    public void save(User user) {
+
+    }
 }

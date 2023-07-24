@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import jakarta.persistence.Column;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +30,15 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "verified")
+    private Boolean isVerified;
+
     @Builder.Default
     @Column(name = "subject")
     private String subject = "UserA support";
+
+
 }

@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class UserRegistrationEventListener {
@@ -23,6 +25,7 @@ public class UserRegistrationEventListener {
         User user = User.builder()
                 .userName(event.getUserName())
                 .email(event.getEmail())
+                .token(UUID.randomUUID().toString())
                 .build();
         userRepository.save(user);
         try {
@@ -30,6 +33,6 @@ public class UserRegistrationEventListener {
         } catch (MessagingException e) {
             // handle the exception
         }
-        eventPublisher.publishEvent("email-verification-exchange", "email-verification-key", event);
+//        eventPublisher.publishEvent("email-verification-exchange", "email-verification-key", event);
     }
 }

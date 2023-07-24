@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class MailSender {
@@ -21,8 +25,12 @@ public class MailSender {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, "UTF-8");
 
+        Map<String, Object> model = new HashMap<>();
+        model.put("token", user.getToken());
+        model.put("userName", user.getUserName());
+
         Context context = new Context();
-        context.setVariable("userName", user.getUserName());
+        context.setVariables(model);
 
         String html = templateEngine.process("email-template", context);
 
