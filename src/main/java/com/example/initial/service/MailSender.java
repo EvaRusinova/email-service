@@ -12,7 +12,6 @@ import org.thymeleaf.context.Context;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -27,7 +26,7 @@ public class MailSender {
 
         Map<String, Object> model = new HashMap<>();
         model.put("token", user.getToken());
-        model.put("userName", user.getUserName());
+        model.put("fullName", user.getFullName());
 
         Context context = new Context();
         context.setVariables(model);
