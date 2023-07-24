@@ -1,35 +1,61 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.1.1'
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
 }
 
 group = 'com.project'
 version = '1.0.0'
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
 
-	// Spring
-	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    // Spring
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
-	// h2 database
-	implementation 'com.h2database:h2:2.1.214'
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+    // Jakarta Bean Validation API
+    implementation 'jakarta.validation:jakarta.validation-api'
+    // Hibernate Validator as the implementation of Jakarta Bean Validation
+    implementation 'org.hibernate.validator:hibernate-validator'
+
+    //Gmail
+    implementation 'com.google.api-client:google-api-client:2.2.0'
+    implementation 'com.google.apis:google-api-services-gmail:v1-rev83-1.23.0'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.43.3'
+
+    // Thymeleaf dependency replace variables
+    implementation 'org.thymeleaf:thymeleaf:3.0.12.RELEASE'
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.1.1.RELEASE'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    // h2 database
+    implementation 'com.h2database:h2:2.2.220'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
