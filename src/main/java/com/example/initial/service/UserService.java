@@ -4,7 +4,7 @@ import com.example.initial.entity.User;
 
 public interface UserService {
 
-    User findByUserName(String userName);
+    User findByToken(String token);
 
-    User findByEmail(String email);
+    void save(User user);
 }

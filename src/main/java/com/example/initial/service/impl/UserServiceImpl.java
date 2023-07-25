@@ -12,11 +12,11 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public User findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+    public User findByToken(String token) {
+        return userRepository.findByToken(token);
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public void save(User user) {
+        userRepository.save(user);
     }
 }
