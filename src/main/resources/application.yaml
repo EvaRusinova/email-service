@@ -29,3 +29,19 @@ mail:
     starttls: true
     debug: true
 
+#RabbitMq
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  virtualHost: "/"
+  queues:
+    user-registration-q: user-registration-queue
+    email-verification-q: email-verification-queue
+  routing-keys:
+    user-registration-rk: user-registration-key
+    email-verification-rk: email-verification-key
+  exchanges:
+    user-registration-ex: user-registration-exchange
+    email-verification-ex: email-verification-exchange

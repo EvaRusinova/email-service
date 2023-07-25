@@ -1,4 +1,4 @@
-package com.example.initial.listener;
+package com.example.initial.messaging;
 
 import com.example.initial.entity.User;
 import com.example.initial.event.UserRegistrationEvent;
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class UserRegistrationEventListener {
+public class EventListener {
 
     private final UserRepository userRepository;
     private final MailSender mailSender;
