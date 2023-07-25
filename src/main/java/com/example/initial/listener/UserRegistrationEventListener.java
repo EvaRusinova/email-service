@@ -21,7 +21,7 @@ public class UserRegistrationEventListener {
     @RabbitListener(queues = "user-registration-queue")
     public void onUserRegistrationEvent(UserRegistrationEvent event) throws MessagingException {
         User user = User.builder()
-                .userName(event.getUserName())
+                .fullName(event.getFullName())
                 .email(event.getEmail())
                 .token(UUID.randomUUID().toString())
                 .build();

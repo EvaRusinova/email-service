@@ -25,7 +25,6 @@ public class EmailServiceApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         User user = User.builder()
-                .userName("antoanr")
                 .fullName("Antoan Rusinov")
                 .email("antoan.rusinov@gmail.com")
                 .token(UUID.randomUUID().toString())

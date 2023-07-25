@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    // other endpoints ffffffffffffffffffffff methods...
 
     @GetMapping("/verify/{token}")
     public ResponseEntity<String> verifyUser(@PathVariable("token") String token) {
