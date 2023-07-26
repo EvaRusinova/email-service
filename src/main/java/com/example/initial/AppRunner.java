@@ -10,13 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class EmailServiceApplication implements ApplicationRunner {
+public class AppRunner implements ApplicationRunner {
 
     private final UserRepository userRepository;
     private final MailSender mailSender;
 
     public static void main(String[] args) {
-        SpringApplication.run(EmailServiceApplication.class, args);
+        SpringApplication.run(AppRunner.class, args);
     }
 
     @Override
