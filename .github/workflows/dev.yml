@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'  # Use Java 17, which matches your project's version
-
+          distribution: 'adopt'  # Use AdoptOpenJDK distribution
       - name: Build and Test
         run: ./gradlew build  # Use Gradle to build and run tests
 
