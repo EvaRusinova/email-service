@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   # Spring Boot application
-  spring-app:
+  email-service:
     container_name: email-service  # Sets the container name for the Spring Boot app service
     build:
       context: .  # Specifies the current directory as the build context
