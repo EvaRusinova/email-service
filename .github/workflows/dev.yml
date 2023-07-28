@@ -18,6 +18,9 @@ jobs:
         with:
           java-version: '17'  # Use Java 17, which matches your project's version
           distribution: 'adopt'  # Use AdoptOpenJDK distribution
+      - name: Set execute permissions for gradlew
+        run: chmod +x gradlew
+
       - name: Build and Test
         run: ./gradlew build  # Use Gradle to build and run tests
 
