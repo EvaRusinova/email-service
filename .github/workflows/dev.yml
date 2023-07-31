@@ -39,7 +39,13 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
 
-      # Run the Docker image as a detached container, eposing and mapping the ports
+      # Run the Docker image as a detached container, exposing and mapping the ports.
       - name: Run Docker Image
         run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
+      # Download and run ngrok to create a temporary tunnel for the Docker image's port.
+      - name: Expose Docker Image using ngrok
+        run: |
+          wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+          unzip -qq ngrok-stable-linux-amd64.zip
+          ./ngrok http 8080
