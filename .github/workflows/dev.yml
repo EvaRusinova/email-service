@@ -31,7 +31,7 @@ jobs:
         env:
           CR_PAT: ${{ secrets.EMAIL_SERVICE_DEV }}
         run: |
-            echo $CR_PAT | docker login ghcr.io -u EvaRusinova --password-stdin
+          echo $CR_PAT | docker login ghcr.io -u EvaRusinova --password-stdin
 
       - name: Tag and Push Docker Image
         run: |
