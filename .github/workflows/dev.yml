@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       # Set up Java 17 in the GitHub Actions runner environment using the AdoptOpenJDK distribution.
-      - name: Set up Java
+      - name: Set up Java 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
@@ -42,29 +42,3 @@ jobs:
       # Run the Docker image as a detached container, exposing and mapping the ports.
       - name: Run Docker Image
         run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
-      # Download and run ngrok to create a temporary tunnel for the Docker image's port.
-      - name: Expose Docker Image using ngrok
-        run: |
-          wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-          unzip -qq ngrok-stable-linux-amd64.zip
-          ./ngrok http ${{ env.PORT }} > ngrok_output.txt &
-        # The ngrok command will generate a forwarding URL that you can use to access the Docker image.
-
-      # Wait for ngrok to initialize and display the forwarding URL.
-      - name: Wait for ngrok
-        run: sleep 10
-        # Adjust the sleep time as needed. Waiting for a few seconds should be enough for ngrok to initialize.
-
-      # Extract the ngrok forwarding URL from the ngrok command output and set it as an environment variable.
-      - name: Extract ngrok URL
-        id: extract_ngrok_url
-        run: |
-          echo "NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')" >> $GITHUB_ENV
-        # Use the GITHUB_ENV file to set the NGROK_URL environment variable.
-
-      # Use the ngrok URL to access the Swagger page or web service.
-      - name: Access Swagger Page
-        run: |
-          echo "Swagger Page URL: $NGROK_URL"
-        # Use the 'NGROK_URL' environment variable to access the Swagger page or web service.
