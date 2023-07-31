@@ -28,7 +28,10 @@ jobs:
         run: docker build -t email-service .  # Build Docker image based on Dockerfile
 
       - name: Log in to GitHub Container Registry
-        run: echo ${{ secrets.EMAIL_SERVICE_DEV }} | docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+        env:
+        CR_PAT: ${{ secrets.EMAIL_SERVICE_DEV }}
+        run: |
+            echo $CR_PAT | docker login ghcr.io -u EvaRusinova --password-stdin
 
       - name: Tag and Push Docker Image
         run: |
