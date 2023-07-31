@@ -43,9 +43,15 @@ jobs:
       - name: Run Docker Image
         run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
-      # Download and run ngrok to create a temporary tunnel for the Docker image's port.
-      - name: Expose Docker Image using ngrok
+      # Extract the ngrok forwarding URL from the ngrok command output and set it as an environment variable.
+      - name: Extract ngrok URL
+        id: extract_ngrok_url
+        run: echo "::set-output name=url::$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')"
+        # This step uses curl and jq to extract the ngrok forwarding URL from the ngrok command output.
+        # The extracted URL is set as an environment variable 'NGROK_URL'.
+
+      # Use the ngrok URL to access the Swagger page or web service.
+      - name: Access Swagger Page
         run: |
-          wget -q https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-          unzip -qq ngrok-stable-linux-amd64.zip
-          ./ngrok http ${{ env.PORT }}
+          echo "Swagger Page URL: ${{ steps.extract_ngrok_url.outputs.url }}"
+      # Use the 'NGROK_URL' environment variable to access the Swagger page or web service.
