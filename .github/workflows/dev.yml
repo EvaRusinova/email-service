@@ -29,7 +29,7 @@ jobs:
 
       - name: Log in to GitHub Container Registry
         env:
-        CR_PAT: ${{ secrets.EMAIL_SERVICE_DEV }}
+          CR_PAT: ${{ secrets.EMAIL_SERVICE_DEV }}
         run: |
             echo $CR_PAT | docker login ghcr.io -u EvaRusinova --password-stdin
 
