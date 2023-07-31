@@ -8,7 +8,8 @@ on:
 
 env:
   IMAGE_TAG: latest
-  DOCKER_IMAGE_NAME: email-service
+  IMAGE_NAME: email-service
+  PORT: 8082
 
 jobs:
   build:
@@ -36,4 +37,9 @@ jobs:
 
       # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
-        run: docker build -t ${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+        run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
+
+      # Run the Docker image as a detached container, eposing and mapping the ports
+      - name: Run Docker Image
+        run: docker run -d -p ${{ env.PORT }}:${{ env.PORT }} ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+
