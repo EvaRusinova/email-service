@@ -1,9 +1,10 @@
-name: Java Spring Boot CI/CD
+name: Build and Tag Docker Image
 
 on:
   push:
     branches:
       - dev
+      - main
 
 env:
   IMAGE_TAG: latest
@@ -14,30 +15,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Check out the code from the repository so that the workflow can access your project files.
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Java 17 in the GitHub Actions runner environment using the AdoptOpenJDK distribution.
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      # Grant execute permissions to the Gradle wrapper script (gradlew) so that it can be executed in the next step.
       - name: Set execute permissions for gradlew
         run: chmod +x gradlew
 
+      # Run the "build" task using the Gradle wrapper to build and test your project.
       - name: Build and Test
         run: ./gradlew build
 
+      # This step builds a Docker image with the specified name and tag based on the current directory (where the Dockerfile is located).
       - name: Build Docker Image
         run: docker build -t ${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }} .
-
-#      - name: Log in to GitHub Container Registry
-#        env:
-#          CR_PAT: ${{ secrets.EMAIL_SERVICE_DEV }}
-#        run: |
-#          echo $CR_PAT | docker login ghcr.io -u EvaRusinova --password-stdin
-#
-#      - name: Tag and Push Docker Image
-#        run: |
-#          docker tag email-service ghcr.io/eva_rusinova/email-service:latest
-#          docker push ghcr.io/eva_rusinova/email-service:latest
